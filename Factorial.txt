@@ -1,0 +1,6 @@
+%obtener factorial
+fact(0,1):-!. % caso base (corte)
+fact(N,X):-N1 is N-1, %decremento
+    		fact(N1,X1), %recursividad
+    		X is N*X1.	%devuelvo
+%fact(7,X) %5040

@@ -1,0 +1,23 @@
+% Obtener notas maximas de cada alumno
+
+notas(alumno1,2).
+notas(alumno1,3).
+
+notas(alumno2,3).
+notas(alumno2,8). 
+
+notas(alumno3,4).
+notas(alumno3,6).
+notas(alumno3,8).
+
+notas(alumno4,5).
+notas(alumno4,0).
+
+prod_cart(Alumno,X,AlumnoC, Y):-notas(Alumno,X), notas(AlumnoC,Y).
+
+seleccion(Alumno,X, Y):-prod_cart(Alumno,X,AlumnoC, Y), X < Y, AlumnoC == Alumno. 
+
+proyeccion(Alumno,X):-seleccion(Alumno,X, _).
+
+max(Alumno,X):- notas(Alumno,X), \+ proyeccion(Alumno,X). %resta
+%max(X):-num(X), \+ proyeccion(X).

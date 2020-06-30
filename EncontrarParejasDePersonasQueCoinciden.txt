@@ -1,0 +1,39 @@
+
+%hombre(N,A,C,E).
+%mujer(N,A,C,E).
+hombre(pepe,18,castaño,joven).
+hombre(juan,30,rubio,adulto).
+hombre(julian,18,castaño,joven).
+mujer(cintia,50,castaño,adulto).
+mujer(julieta,80,rubio,viejo).
+
+%gusta(N,M,L,S).
+
+gusta(juan,pop,aventura,jogging).
+gusta(julieta,pop,aventura,jogging).
+
+gusta(pepe,clásica,aventura,natación).
+gusta(julian,clásica,aventura,natación).
+gusta(cintia,clásica,aventura,natación).
+
+%gusta(N,M,L,S)
+%busca(N,A,C,E).
+busca(pepe,50,castaño,adulto).
+busca(julian,50,castaño,adulto).
+busca(cintia,18,castaño,joven).
+
+busca(juan,80,rubio,viejo).
+busca(julieta,30,rubio,adulto).
+
+%test: juan y julieta son adecuados
+sonAdecuados(H,M):-hombre(H,AH,CH,EH),mujer(M,AM,CM,EM), % M busca H y H busca M
+    				busca(M,AH,CH,EH), busca(H,AM,CM,EM),
+    				gusta(H,Mu,L,S),gusta(M,Mu,L,S).
+    				
+    			
+
+    
+    
+    
+    
+    

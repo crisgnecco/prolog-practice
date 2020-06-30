@@ -1,0 +1,21 @@
+%8)
+
+%pais_superficie(P,A).
+pais_superficie(argentina,300).
+pais_superficie(brasil,400).
+pais_superficie(peru,150).
+
+
+
+%menu con la mayor sup
+prod_cart(P1,X,P2, Y):-pais_superficie(P1,X), pais_superficie(P2,Y).
+seleccion(P1,X,P2, Y):-prod_cart(P1,X,P2, Y), X < Y, P1 \== P2. 
+proyeccion(P1,X):-seleccion(P1,X,_,_).
+
+% busco cant de calorias minima
+may_sup(P,X):-pais_superficie(P,X), \+ proyeccion(P,X). 
+
+%busco el menu que tiene esa cant minima de calorias.
+%menu_menor_calorias(X,Y,Z,Calorias):-min_Calorias(Calorias),menu_calorias(X,Y,Z,Calorias).
+    
+ 

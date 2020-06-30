@@ -1,0 +1,26 @@
+
+%clauses
+transporte(roma,20).
+transporte(londres,30).
+transporte(tunez,10).
+
+alojamiento(roma,hotel,50).
+alojamiento(roma,hostal,30).
+alojamiento(roma,camping,10).
+alojamiento(londres,hotel,60).
+alojamiento(londres,hostal,40).
+alojamiento(londres,camping,20).
+alojamiento(tunez,hotel,40).
+alojamiento(tunez,hostal,20).
+alojamiento(tunez,camping,5).
+%finclauses
+
+
+% operaciones
+sumar(S, X, Y) :- S is (X + Y).
+multiplicar(M, X, Y) :- M is (X * Y).
+es_menor(X, Y) :- X < Y.
+
+viaje(C, S, H, P):-alojamiento(C,H,CC), multiplicar(P, CC, S).
+viajeEconomico(C, S, H, P, Pmax):-viaje(C, S, H, P), es_menor(P,Pmax).
+%test: viajeEconomico(roma, 2, H, P,70)

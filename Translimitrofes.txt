@@ -1,0 +1,19 @@
+limita(argentina,brasil).
+limita(argentina,uruguay).
+limita(argentina,paraguay).
+limita(argentina,bolivia).
+limita(argentina,chile).
+
+limita(chile,peru).
+limita(bolivia,peru).
+limita(bolivia,paraguay).
+limita(paraguay,brasil).
+limita(brasil,peru).
+limita(brasil,colombia).
+limita(brasil,venezuela).
+limita(brasil,guayana).
+
+limita_con(X,Y):- (limita(X,Y); limita(Y,X)), X \== Y.
+
+translimita_con(X,Y):- limita_con(X,Z), limita_con(Z,Y),
+    \+ limita_con(X,Y), X \==Y.

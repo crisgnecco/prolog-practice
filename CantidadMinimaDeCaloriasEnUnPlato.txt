@@ -1,0 +1,42 @@
+%7)
+
+%clauses
+entrada(paella,200).
+entrada(gazpacho,100).
+entrada(consomé,50).
+
+carne(filete_de_cerdo,100).
+carne(pollo_asado,80).
+
+pescado(trucha,60).
+pescado(bacalao,50).
+
+postre(flan,10).
+postre(helado,20).
+postre(pastel,40).
+
+bebida(vino,10).
+bebida(cerveza,15).
+bebida(agua_mineral,5).
+%fin clauses
+
+% a)¿Cuáles son los menús que ofrece el restaurante?
+menu(X,Y,Z):- entrada(X,_),( carne(Y,_); pescado(Y,_) ),postre(Z,_).
+
+suma(X,Y,Z):-Z is Y+X.
+% calorias totales de un menu
+menu_calorias(X,Y,Z,Calorias):- entrada(X,CE),(carne(Y,CPP) ; pescado(Y,CPP)), postre(Z,CP),
+    							suma(CE,CP,Cal1),suma(Cal1,CPP,Calorias).
+								
+%menu con la menor cant de calorias
+prod_cart(X, Y):-menu_calorias(_,_,_,X), menu_calorias(_,_,_,Y).
+seleccion(X, Y):-prod_cart(X, Y), X > Y. % para obtener minimos, invierto aca( "<" ->  ">")
+proyeccion(X):-seleccion(X, _).
+
+% busco cant de calorias minima
+min_Calorias(X):-menu_calorias(_,_,_,X), \+ proyeccion(X). 
+
+%busco el menu que tiene esa cant minima de calorias.
+menu_menor_calorias(X,Y,Z,Calorias):-min_Calorias(Calorias),menu_calorias(X,Y,Z,Calorias).
+    
+ 
