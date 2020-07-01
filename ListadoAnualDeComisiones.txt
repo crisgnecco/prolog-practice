@@ -1,0 +1,38 @@
+%9)
+
+ventas1erSem(v1, 20000).
+ventas1erSem(v2, 20000).
+ventas1erSem(v3, 19000).
+ventas1erSem(v4, 150).
+ventas1erSem(v5, 150).
+
+ventas2doSem(v1, 20000).
+ventas2doSem(v3, 20000).
+ventas2doSem(v4, 150).
+
+
+% 20porc del total vendido en el año para aquellos vendedores que
+%hayan tenido ventas en ambos semestres y cada una de ellas
+%supera los $ 20000.
+comisiones(V,C):-ventas1erSem(V, I1),ventas2doSem(V, I2),
+    							I1 >= 20000, I2 >=20000, C is (I1 + I2) * (20/100).
+    							
+% 10% del total vendido en el año para aquellos vendedores que
+% hayan tenido ventas en ambos semestres, pero no superan los $
+% 20000 en alguno de estos. 								
+comisiones(V,C):-ventas1erSem(V, I1),ventas2doSem(V, I2),
+    							( (I1 < 20000, I2 >=20000);(I1 >= 20000, I2 < 20000)), C is (I1 + I2) * (10/100).
+
+
+% 5% del total vendido para los vendedores que no registran ventas
+%en algún semestre
+comisiones(V,C):- ventas1erSem(V, I1),not(ventas2doSem(V,_)),
+  							C is I1 * (5/100).
+
+comisiones(V,C):-ventas2doSem(V, I1),not(ventas1erSem(V,_)),
+  							C is I1 * (5/100).
+    			  
+comisiones(V,C):-ventas1erSem(V, I1),ventas2doSem(V, I2),
+    							I1 < 20000, I2 <20000, C is 0.
+				
+
