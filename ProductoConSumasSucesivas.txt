@@ -1,0 +1,5 @@
+producto_con_sumas(_,0,0):-!.
+producto_con_sumas(X,Y,Z):- N is Y-1, producto_con_sumas(X,N,ZZ), Z is X + ZZ.
+
+% test: producto_con_sumas(8,3,Z) 
+% esp: 24
