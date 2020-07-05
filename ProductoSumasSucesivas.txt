@@ -1,5 +1,0 @@
-potencia_con_multip(X,1,X):-!.
-potencia_con_multip(X,Y,Z):- N is Y-1, potencia_con_multip(X,N,ZZ), Z is X * ZZ.
-
-% test: potencia_con_multip(8,3,Z) 
-% esp: 512
