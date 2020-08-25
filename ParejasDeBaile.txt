@@ -1,0 +1,16 @@
+%Considere que dos personas X e Y de sexos diferentes son adecuadas
+%para formar pareja si X e Y tienen en común 
+%alguno de los dos estilos de baile que hayan declarado
+
+hombre(alberto, cumbia, salsa). %conincide en 2
+hombre(pepe, bachata, salsa).  %coincide en 1
+hombre(juan, regue, rock).  %coincide en el otro (1)
+hombre(cris, electro, rock).  %no coincide
+
+mujer(ana, cumbia, salsa).
+mujer(sara, bachata, merengue).
+mujer(clau, bachata, regue).
+mujer(nicky, cumbia, regue).
+
+coinciden(X,Y):-hombre(X, _, E2) , mujer(Y, _, E2).
+coinciden(X,Y):-hombre(X, E1, _) , mujer(Y, E1, _).
