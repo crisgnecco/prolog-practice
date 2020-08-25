@@ -1,0 +1,16 @@
+% evaluacion 3
+
+ruta(c1, c2).
+%ruta(c1, c3).%%
+ruta(c2, c3).
+ruta(c3, c4).
+ruta(c4, c5).
+ruta(c5, c4).
+
+largoDeCamino(Y,Y,Cont):-Cont is 0,!.
+largoDeCamino(X,Y,Cont):-ruta(X,Z), largoDeCamino(Z,Y,ContRet), Cont is 1+ContRet.
+
+todosmenosmin(X,Y,ContX):-largoDeCamino(X,Y,ContX), largoDeCamino(X,Y,ContY), ContX > ContY.
+camino_minimo(X,Y,Cont):-largoDeCamino(X,Y,Cont), not(todosmenosmin(X,Y,Cont)).
+
+
