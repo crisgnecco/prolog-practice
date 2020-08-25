@@ -1,0 +1,8 @@
+% Determinar Maximo Comun Divisor
+
+%cp1
+%mcd(273,182). % 91
+
+mcd(X,0):-print(X),!. % o Y es 0!.
+
+mcd(X,Y):-Resto is X mod Y, mcd(Y,Resto).
